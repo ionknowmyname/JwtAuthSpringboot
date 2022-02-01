@@ -2,6 +2,7 @@ package com.ionknowmyname.userauth.controller;
 
 import com.ionknowmyname.userauth.models.JwtRequest;
 import com.ionknowmyname.userauth.models.JwtResponse;
+import com.ionknowmyname.userauth.models.User;
 import com.ionknowmyname.userauth.services.UserService;
 import com.ionknowmyname.userauth.utils.JwtUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/auth")
@@ -54,6 +57,10 @@ public class UserController {
     }
 
 
+    @PostMapping("/signup")
+    public String saveUser(@Valid @RequestBody User user){ // User user
+        return userDetailsService.saveUser(user);
+    }
 
     /*
 
