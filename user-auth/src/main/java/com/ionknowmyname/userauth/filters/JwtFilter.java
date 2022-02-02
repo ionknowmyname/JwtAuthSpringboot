@@ -44,6 +44,7 @@ public class JwtFilter extends OncePerRequestFilter {
             // second part after && checks that no sessions is existing with that user details
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            System.out.println("loadbyusername from JwtFilter: " + userDetails);
 
             if(jwtUtility.validateToken(jwtToken, userDetails)){
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(

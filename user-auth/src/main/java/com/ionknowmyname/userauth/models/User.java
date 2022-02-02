@@ -29,7 +29,7 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @DBRef
+    // @DBRef
     private Set<Role> roles = new HashSet<>();  // Set<String> roles
 
 

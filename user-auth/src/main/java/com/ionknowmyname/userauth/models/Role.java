@@ -12,36 +12,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "roles")
+//@Document(collection = "roles")
 public class Role {
 
     @Id
     private String id;
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
+    // @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 
     private String role;
 
 
-    /*public Role() {
-    }
-
-    public Role(RoleEnum name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public RoleEnum getName() {
-        return name;
-    }
-
-    public void setName(RoleEnum name) {
-        this.name = name;
-    }*/
 }

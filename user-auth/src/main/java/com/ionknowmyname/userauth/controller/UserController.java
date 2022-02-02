@@ -50,6 +50,7 @@ public class UserController {
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+        System.out.println("loadbyusername from UserController: " + userDetails);
 
         final String token  = jwtUtility.generateToken(userDetails);
 
@@ -59,6 +60,11 @@ public class UserController {
 
     @PostMapping("/signup")
     public String saveUser(@Valid @RequestBody User user){ // User user
+        return userDetailsService.saveUser(user);
+    }
+
+    @PostMapping("/signupAdmin")
+    public String saveAdmin(@Valid @RequestBody User user){
         return userDetailsService.saveUser(user);
     }
 

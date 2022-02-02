@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
@@ -59,6 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/authenticate")
                 .permitAll()
                 .antMatchers("/api/auth/signup")
+                .permitAll()
+                .antMatchers("/api/role/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
