@@ -24,19 +24,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    /*public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }*/
-
-
-
-    @Autowired
-    private RoleRepository roleRepository;
+    /*@Autowired
+    private RoleRepository roleRepository;*/
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -55,7 +44,7 @@ public class UserService implements UserDetailsService {
 
         Set<Role> roles = user.getRoles();
         for (Role role : roles) {
-            System.out.println(role.getRole());
+            log.info("role from loadbyusername in UserService: {}", role.getRole());
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
 
@@ -137,7 +126,7 @@ public class UserService implements UserDetailsService {
         // user.setEnabled(true);
 
 //        Role userRole = roleRepository.findByRole("USER"); // ADMIN
-        Role userRole = new Role(UUID.randomUUID().toString(), "Admin"); // ADMIN
+        Role userRole = new Role(UUID.randomUUID().toString(), "ADMIN"); // ADMIN
         log.info("user role --> {} ", userRole);
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 

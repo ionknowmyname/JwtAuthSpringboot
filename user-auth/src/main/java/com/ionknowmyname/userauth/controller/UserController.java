@@ -55,6 +55,8 @@ public class UserController {
         final String token  = jwtUtility.generateToken(userDetails);
 
         return new JwtResponse(token);
+
+        // setting security context is done under JwtFilter
     }
 
 
@@ -65,7 +67,7 @@ public class UserController {
 
     @PostMapping("/signupAdmin")
     public String saveAdmin(@Valid @RequestBody User user){
-        return userDetailsService.saveUser(user);
+        return userDetailsService.saveAdmin(user);
     }
 
     /*
