@@ -27,15 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtFilter jwtFilter;
 
 
-    /*@Bean
+    @Bean
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoder() { // public BCryptPasswordEncoder also works
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

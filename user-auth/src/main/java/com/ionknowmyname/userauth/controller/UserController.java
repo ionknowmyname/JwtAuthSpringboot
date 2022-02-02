@@ -5,6 +5,7 @@ import com.ionknowmyname.userauth.models.JwtResponse;
 import com.ionknowmyname.userauth.models.User;
 import com.ionknowmyname.userauth.services.UserService;
 import com.ionknowmyname.userauth.utils.JwtUtility;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,9 +14,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/auth")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -54,7 +58,16 @@ public class UserController {
 
         final String token  = jwtUtility.generateToken(userDetails);
 
-        return new JwtResponse(token);
+
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        log.info("roles from /authenticate in UserController: {}", roles);
+
+        //return new JwtResponse(token);
+
+        return new JwtResponse(token, userDetails.getUsername(), roles);
 
         // setting security context is done under JwtFilter
     }
